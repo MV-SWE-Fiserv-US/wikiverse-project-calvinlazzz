@@ -1,11 +1,11 @@
 import React from 'react'
 
 export const Page = ({page, onClick}) => {
-  return 
+  return (
       <div onClick={() => onClick(page.slug)} style={{ cursor: 'pointer' }}>
 
-    <h3>{props.page.title}</h3>
+    <h3>{page.title}</h3>
     </div>
-
+  )
   
 }

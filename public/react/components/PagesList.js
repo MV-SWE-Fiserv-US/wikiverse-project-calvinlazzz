@@ -1,7 +1,7 @@
 import React from 'react'
-import { Page } from './Page'
+import  {Page}  from './Page'
 
-export const PagesList = ({ pages }) => {
+export const PagesList = ({ pages, onPageClick }) => {
   return <>
 		{
 			pages.map((page, idx) => {
