@@ -16,6 +16,15 @@ export const App = () => {
       console.log('Oh no an error! ', err)
     }
   }
+  async function fetchPageDetails(slug) {
+    try {
+      const response = await fetch(`${apiURL}/wiki/${slug}`);
+      const pageData = await response.json();
+      setSelectedPage(pageData); 
+    } catch (err) {
+      console.log('Error fetching page details: ', err);
+    }
+  }
 
   useEffect(() => {
     fetchPages()
@@ -25,7 +34,10 @@ export const App = () => {
 		<main>
       <h1>WikiVerse</h1>
 			<h2>An interesting 📚</h2>
-			<PagesList pages={pages} />
-		</main>
+      {selectedPage ? (
+        <PageDetails page={selectedPage} goBack={() => setSelectedPage(null)} />
+      ) : (
+        <PagesList pages={pages} onPageClick={fetchPageDetails} />
+      )}		</main>
   )
 }

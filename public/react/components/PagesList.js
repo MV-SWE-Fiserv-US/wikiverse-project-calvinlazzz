@@ -5,7 +5,7 @@ export const PagesList = ({ pages }) => {
   return <>
 		{
 			pages.map((page, idx) => {
-				return <Page page={page} key={idx} />
+				return <Page page={page} key={idx} onClick={onPageClick} />
 			})
 		}
 	</>
