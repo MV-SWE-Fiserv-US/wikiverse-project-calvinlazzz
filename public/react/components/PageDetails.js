@@ -8,7 +8,7 @@ export const PageDetails = ({ page, goBack }) => {
       <h1>{page.title}</h1>
       <p><strong>Author:</strong> {page.author.name}</p>
       <p><strong>Content:</strong> {page.content}</p>
-      <p><strong>Tags:</strong> {page.tags.map((tag,id) => {return <p>{tag.name}</p>} ) } </p>
+      <p><strong>Tags:</strong> {page.tags.map((tag,id) => {return <span key = {id}>{tag.name}</span>} ) } </p>
       <p><strong>Created At:</strong> {new Date(page.createdAt).toLocaleString()}</p>
     </div>
   );
