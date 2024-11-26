@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import  {PagesList}  from './PagesList'
-import  {PageDetails}  from './PageDetails'
-import { ArticleForm } from './ArticleForm.js'
+import  {PageDetails}  from './PageDetails';
+import { ArticleForm } from './ArticleForm'
 
 // import and prepend the api url to any fetch calls
 import apiURL from '../api'
@@ -56,8 +56,8 @@ export const App = () => {
       })
       const data = await response.json()
       console.log('Article deleted:', data)
-      fetchPages() 
-      setSelectedPage(null) 
+      fetchPages() // Re-fetch the articles
+      setSelectedPage(null) // Switch back to list view
     } catch (err) {
       console.log('Error deleting article: ', err)
     }
@@ -71,7 +71,7 @@ export const App = () => {
       <h1>WikiVerse</h1>
 			<h2>An interesting 📚</h2>
       {selectedPage ? (
-        <PageDetails page={selectedPage} goBack={() => setSelectedPage(null)} onDelete={deleteArticle} />
+        <PageDetails page={selectedPage} goBack={() => setSelectedPage(null)} />
       ) : isAddingArticle ? (
         <ArticleForm onSubmit={addArticle} onCancel={() => setIsAddingArticle(false)} />
       ) : (

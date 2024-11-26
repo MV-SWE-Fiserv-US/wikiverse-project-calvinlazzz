@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const PageDetails = ({ page, goBack,onDelete }) => {
+export const PageDetails = ({ page, goBack }) => {
 
   return (
     <div>

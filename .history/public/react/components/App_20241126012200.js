@@ -56,7 +56,7 @@ export const App = () => {
       })
       const data = await response.json()
       console.log('Article deleted:', data)
-      fetchPages() 
+      fetchPages() // Re-fetch the articles
       setSelectedPage(null) 
     } catch (err) {
       console.log('Error deleting article: ', err)

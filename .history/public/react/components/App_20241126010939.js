@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import  {PagesList}  from './PagesList'
-import  {PageDetails}  from './PageDetails'
-import { ArticleForm } from './ArticleForm.js'
+import  {PageDetails}  from './PageDetails';
+
 
 // import and prepend the api url to any fetch calls
 import apiURL from '../api'
 
 export const App = () => {
   const [pages, setPages] = useState([])
-  const [selectedPage, setSelectedPage] = useState(null); 
-  const [isAddingArticle, setIsAddingArticle] = useState(false); 
+  const [selectedPage, setSelectedPage] = useState(null); // State for selected page
+
 
   async function fetchPages () {
     try {
@@ -43,23 +43,10 @@ export const App = () => {
       })
       const data = await response.json()
       console.log('Article added:', data)
-      fetchPages() 
+      fetchPages() // Re-fetch the articles
       setIsAddingArticle(false) 
     } catch (err) {
       console.log('Error adding article: ', err)
-    }
-  }
-  async function deleteArticle(slug) {
-    try {
-      const response = await fetch(`${apiURL}/wiki/${slug}`, {
-        method: 'DELETE'
-      })
-      const data = await response.json()
-      console.log('Article deleted:', data)
-      fetchPages() 
-      setSelectedPage(null) 
-    } catch (err) {
-      console.log('Error deleting article: ', err)
     }
   }
   useEffect(() => {
@@ -71,14 +58,9 @@ export const App = () => {
       <h1>WikiVerse</h1>
 			<h2>An interesting 📚</h2>
       {selectedPage ? (
-        <PageDetails page={selectedPage} goBack={() => setSelectedPage(null)} onDelete={deleteArticle} />
-      ) : isAddingArticle ? (
-        <ArticleForm onSubmit={addArticle} onCancel={() => setIsAddingArticle(false)} />
+        <PageDetails page={selectedPage} goBack={() => setSelectedPage(null)} />
       ) : (
-        <>
-        <button onClick={() => setIsAddingArticle(true)}>Add Article</button>
         <PagesList pages={pages} onPageClick={fetchPageDetails} />
-        </>
       )}		</main>
   )
 }

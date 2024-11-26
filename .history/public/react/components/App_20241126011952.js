@@ -56,8 +56,8 @@ export const App = () => {
       })
       const data = await response.json()
       console.log('Article deleted:', data)
-      fetchPages() 
-      setSelectedPage(null) 
+      fetchPages() // Re-fetch the articles
+      setSelectedPage(null) // Switch back to list view
     } catch (err) {
       console.log('Error deleting article: ', err)
     }

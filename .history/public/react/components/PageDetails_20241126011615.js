@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const PageDetails = ({ page, goBack,onDelete }) => {
+export const PageDetails = ({ page, goBack }) => {
 
   return (
     <div>
@@ -11,6 +11,7 @@ export const PageDetails = ({ page, goBack,onDelete }) => {
       <p><strong>Tags:</strong> {page.tags.map((tag,id) => {return <span key = {id}>{tag.name}</span>} ) } </p>
       <p><strong>Created At:</strong> {new Date(page.createdAt).toLocaleString()}</p>
       <button onClick={() => onDelete(page.slug)}>Delete</button>
+
     </div>
   );
 };
